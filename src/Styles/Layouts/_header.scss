@@ -1,0 +1,20 @@
+#header {
+  // background-image: linear-gradient(to right, #355c7d, #6c5b7b, #c06c84);
+  nav {
+    .header__logo {
+      &:hover {
+        cursor: pointer;
+      }
+      padding-top: 5px;
+      a {
+        &:hover {
+          text-decoration: none;
+        }
+        margin-left: 15px;
+        color: #000000;
+        font-size: 34px;
+        font-weight: 500;
+      }
+    }
+  }
+}
