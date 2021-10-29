@@ -11,6 +11,7 @@ export default function ModalUpdateUser({
   styleModal,
   handleSubmitUpdate,
   styleTextField,
+    data
 }) {
   const [Ten, setTen] = useState("");
   const [NgaySinh, setNgaySinh] = useState("");
@@ -52,9 +53,8 @@ export default function ModalUpdateUser({
     setRole(event.target.value);
   };
 
-  const userSelected = {} //Đang Làm
   return (
-    <Modal open={openUpdate} onClose={handleCloseUpdate}>
+    <Modal id="modal__update__user" open={openUpdate} onClose={handleCloseUpdate}>
       <Box sx={styleModal}>
         <form
           className="form__update"
@@ -76,6 +76,7 @@ export default function ModalUpdateUser({
             label="ID"
             variant="outlined"
             disabled
+            defaultValue={data.ID}
           />
           <TextField
             style={styleTextField}
@@ -83,6 +84,7 @@ export default function ModalUpdateUser({
             variant="outlined"
             required
             onChange={(e) => setTen(e.target.value)}
+            defaultValue={data.Ten}
           />
           <TextField
             style={styleTextField}
@@ -90,15 +92,17 @@ export default function ModalUpdateUser({
             variant="outlined"
             required
             onChange={(e) => setNgaySinh(e.target.value)}
+            defaultValue={data.NgaySinh}
           />
           <TextField
             select
             label="Giới Tính"
-            value={GioiTinh}
+            // value={GioiTinh}
             onChange={handleChangeGioiTinh}
             variant="outlined"
             required
             style={styleTextField}
+            defaultValue={data.GioiTinh}
           >
             {genderOptions.map((option) => (
               <MenuItem key={option.value} value={option.value}>
@@ -112,14 +116,16 @@ export default function ModalUpdateUser({
             variant="outlined"
             required
             onChange={(e) => setNgayTao(e.target.value)}
+            defaultValue={data.NgayTao}
           />
           <TextField
             select
             style={styleTextField}
             label="Chức Vụ"
-            value={Role}
+            // value={Role}
             onChange={handleChangeRole}
             variant="outlined"
+            defaultValue={data.Role}
             required
           >
             {roleOptions.map((option) => (
@@ -135,7 +141,7 @@ export default function ModalUpdateUser({
               color="primary"
               type="submit"
             >
-              Create
+              Update
             </Button>
             <Button
               variant="outlined"

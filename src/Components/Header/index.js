@@ -8,8 +8,11 @@ import {
   Divider,
   IconButton,
 } from "@material-ui/core";
+import { useSelector } from "react-redux";
 
 export default function Header() {
+
+  const { auth } = useSelector((state) => state.auth);
 
   return (
     <div id="header">
@@ -36,9 +39,9 @@ export default function Header() {
           <Box display="flex" alignItems="center" style={{ cursor: "pointer" }}>
             <Avatar alt="Remy Sharp" src="https://picsum.photos/200/300" />
             <Box ml={2}>
-              <Box style={{ fontWeight: 700 }}>Trần Văn Hùng</Box>
+              <Box style={{ fontWeight: 700 }}>{auth.Ten}</Box>
               <Box component="span" style={{ fontSize: 12 }}>
-                ID: 1
+                ID: {auth.ID}
               </Box>
             </Box>
           </Box>

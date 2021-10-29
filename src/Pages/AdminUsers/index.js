@@ -11,6 +11,9 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import InputLabel from "@material-ui/core/InputLabel";
 import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
 import { AiOutlineDelete } from "react-icons/ai";
@@ -19,6 +22,8 @@ import {
   getListUser,
   deleteUser,
   addUser,
+  setUserSelected,
+  updateUser
 } from "../../redux/actions/userActions";
 import Swal from "sweetalert2";
 import TextField from "@material-ui/core/TextField";
@@ -37,7 +42,6 @@ export default function AdminUsers() {
   const [openUpdate, setOpenUpdate] = React.useState(false);
   const handleOpenUpdate = (item) => {
     setOpenUpdate(true);
-    console.log(item)
   };
   const handleCloseUpdate = () => setOpenUpdate(false);
 
@@ -95,7 +99,7 @@ export default function AdminUsers() {
     setRole(event.target.value);
   };
 
-  const { lists } = useSelector((state) => state.user);
+  const { lists, userSelected } = useSelector((state) => state.user);
 
   useEffect(() => {
     dispatch(getListUser());
@@ -129,7 +133,16 @@ export default function AdminUsers() {
     handleCloseCreate();
   };
 
-  const handleSubmitUpdate = (e) => {};
+  const getUserSelected = (item) => {
+    dispatch(setUserSelected(item))
+    handleOpenUpdate();
+  }
+  const handleSubmitUpdate = (e) => {
+    e.preventDefault();
+    dispatch(updateUser(userSelected));
+    handleCloseUpdate();
+    dispatch(getListUser());
+  };
 
   return (
     <Box className="adminUsers__content" p={2}>
@@ -143,26 +156,47 @@ export default function AdminUsers() {
           mb={4}
           style={{ marginTop: "-40px" }}
         >
-          {/* START FILTER */}
-          <Button
-            style={{ marginRight: "15px" }}
-            color="primary"
-            variant="outlined"
-            startIcon={<FiFilter />}
-          >
-            FILTER
-          </Button>
+          {/* START FILTER - Chưa hoàn thành*/}
+          <FormControl
+          style={{ marginRight: "15px", width: "150px" }}
+          color="primary"
+        size="small"
+        variant="outlined"
+      >
+        <InputLabel htmlFor="outlined-age-native-simple"><FiFilter style={{ marginRight: "5px"}}/>Filters</InputLabel>
+        <Select
+          native
+          defaultValue="all"
+          label="filter-tool"
+        >
+          <option value="Male">Nam</option>
+          <option value="Female">Nữ</option>
+          <option value="Admin">Admin</option>
+          <option value="Manager">Manager</option>
+          <option value="Register">Register</option>
+        </Select>
+      </FormControl>
           {/* END FILTER */}
 
-          {/* START SORT */}
-          <Button
-            style={{ marginRight: "15px" }}
-            color="primary"
-            variant="outlined"
-            startIcon={<BsSortDownAlt />}
-          >
-            SORT
-          </Button>
+          {/* START SORT - chưa hoàn thành*/}
+          <FormControl
+          style={{ marginRight: "15px", width: "150px" }}
+          color="primary"
+        size="small"
+        variant="outlined"
+      >
+        <InputLabel htmlFor="outlined-age-native-simple"><BsSortDownAlt style={{ marginRight:"5px"}}/>Sort</InputLabel>
+        <Select
+          native
+          defaultValue="all"
+          label="sort-tool"
+        >
+          <option value="ID">ID</option>
+          <option value="Ten">Họ Tên</option>
+          <option value="NgaySinh">Ngày Sinh</option>
+          <option value="NgayTao">Ngày Tạo</option>
+        </Select>
+      </FormControl>
           {/* END SORT */}
 
           {/* START CREATE */}
@@ -309,7 +343,7 @@ export default function AdminUsers() {
                   <TableCell align="left">{item.Ten}</TableCell>
                   <TableCell align="left">{item.NgaySinh}</TableCell>
                   <TableCell align="left">
-                    {item.GioiTinh == 0 ? "Nam" : "Nữ"}
+                    {item.GioiTinh === 0 ? "Nam" : "Nữ"}
                   </TableCell>
                   <TableCell align="left">{item.NgayTao}</TableCell>
                   <TableCell align="left">{item.Role}</TableCell>
@@ -318,11 +352,11 @@ export default function AdminUsers() {
                       size="medium"
                       color="primary"
                       style={{ outline: "none" }}
-                      onClick={()=>handleOpenUpdate(item)}
+                      onClick={()=>getUserSelected(item)}
                     >
                       <FiEdit3 fontSize="inherit" />
                     </IconButton>
-                    <ModalUpdateUser openUpdate={openUpdate} handleCloseUpdate={handleCloseUpdate} styleModal={styleModal} handleSubmitUpdate={handleSubmitUpdate} styleTextField={styleTextField}/>
+                    <ModalUpdateUser openUpdate={openUpdate} data={userSelected} handleCloseUpdate={handleCloseUpdate} styleModal={styleModal} handleSubmitUpdate={handleSubmitUpdate} styleTextField={styleTextField}/>
                   </TableCell>
                   <TableCell align="left">
                     <IconButton

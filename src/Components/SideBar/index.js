@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 import { Box, Button, Avatar, Divider, Typography } from "@material-ui/core";
 import { BiHomeSmile } from "react-icons/bi";
 import { FiUsers, FiLogOut } from "react-icons/fi";
+import { useSelector } from "react-redux";
+
 
 export default function SideBar() {
+  const { auth } = useSelector((state) => state.auth);
   return (
     <Box
       height="100vh"
@@ -16,6 +19,7 @@ export default function SideBar() {
           width="240px"
           height="120px"
           src="/img/divi-logo-1-removebg-preview.png"
+          alt="hinhAnh"
         />
         </Link>
       </Box>
@@ -65,9 +69,9 @@ export default function SideBar() {
             >
               <Avatar alt="Remy Sharp" src="https://picsum.photos/200/300" />
               <Box ml={2}>
-                <Box style={{ fontWeight: 500 }}>Trần Văn Hùng</Box>
+                <Box style={{ fontWeight: 500 }}>{auth.Ten}</Box>
                 <Box component="span" style={{ fontSize: 12 }}>
-                  gogogo0646@gmail.com
+                  {auth.Gmail}
                 </Box>
               </Box>
             </Box>

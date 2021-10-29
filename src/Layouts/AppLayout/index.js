@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../../Components/Header";
 import SideBar from "../../Components/SideBar";
-import { Box, Container } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 
 export default function AppLayout({ children }) {
   return (
