@@ -13,25 +13,22 @@ function App() {
   return (
     <Suspense fallback>
       <BrowserRouter>
-      <AppLayout>
-        <Switch>
-           {/* Route DashBoard */}
-          <Route path="/" exact>
-            <Home />
-          </Route>
-
-          {/* Route InfoUser */}
-          <Route path="/info-user">
-            <InfoUser />
-          </Route>
-
-           {/* Route AdminUsers */}
-          <Route path="/admin-users">
-            <AdminUsers />
-          </Route>
-        </Switch>
-      </AppLayout>
-        
+        <AppLayout>
+          <Switch>
+            {/* Route DashBoard */}
+            <Route path="/" exact>
+              <Home />
+            </Route>
+            {/* Route InfoUser */}
+            <Route path="/info-user">
+              <InfoUser />
+            </Route>
+            {/* Route AdminUsers */}
+            <Route path="/admin-users">
+              <AdminUsers />
+            </Route>
+          </Switch>
+        </AppLayout>
       </BrowserRouter>
     </Suspense>
   );

@@ -5,22 +5,21 @@ import { BiHomeSmile } from "react-icons/bi";
 import { FiUsers, FiLogOut } from "react-icons/fi";
 import { useSelector } from "react-redux";
 
-
 export default function SideBar() {
   const { auth } = useSelector((state) => state.auth);
   return (
     <Box
       height="100vh"
-      sx={{ bgcolor: "#2A2234", minWidth: 250, p: 2, position: "relative"  }}
+      sx={{ bgcolor: "#2A2234", minWidth: 250, p: 2, position: "relative" }}
     >
       <Box>
         <Link to="/">
-        <img
-          width="240px"
-          height="120px"
-          src="/img/divi-logo-1-removebg-preview.png"
-          alt="hinhAnh"
-        />
+          <img
+            width="240px"
+            height="120px"
+            src="/img/divi-logo-1-removebg-preview.png"
+            alt="hinhAnh"
+          />
         </Link>
       </Box>
       <Box>
@@ -81,13 +80,12 @@ export default function SideBar() {
         <Box
           mt={3}
           mb={5}
-          style={{ color: "white" , cursor: "pointer"}}
+          style={{ color: "white", cursor: "pointer" }}
           display="flex"
           justifyContent="center"
           alignItems="center"
-          
         >
-          <FiLogOut style={{ margin: "0 15px 0 -20px", fontSize: "20px"}} />
+          <FiLogOut style={{ margin: "0 15px 0 -20px", fontSize: "20px" }} />
           <Typography>Log out</Typography>
         </Box>
       </Box>

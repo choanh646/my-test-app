@@ -23,7 +23,7 @@ import {
   deleteUser,
   addUser,
   setUserSelected,
-  updateUser
+  updateUser,
 } from "../../redux/actions/userActions";
 import Swal from "sweetalert2";
 import TextField from "@material-ui/core/TextField";
@@ -134,9 +134,9 @@ export default function AdminUsers() {
   };
 
   const getUserSelected = (item) => {
-    dispatch(setUserSelected(item))
+    dispatch(setUserSelected(item));
     handleOpenUpdate();
-  }
+  };
   const handleSubmitUpdate = (e) => {
     e.preventDefault();
     dispatch(updateUser(userSelected));
@@ -158,45 +158,43 @@ export default function AdminUsers() {
         >
           {/* START FILTER - Chưa hoàn thành*/}
           <FormControl
-          style={{ marginRight: "15px", width: "150px" }}
-          color="primary"
-        size="small"
-        variant="outlined"
-      >
-        <InputLabel htmlFor="outlined-age-native-simple"><FiFilter style={{ marginRight: "5px"}}/>Filters</InputLabel>
-        <Select
-          native
-          defaultValue="all"
-          label="filter-tool"
-        >
-          <option value="Male">Nam</option>
-          <option value="Female">Nữ</option>
-          <option value="Admin">Admin</option>
-          <option value="Manager">Manager</option>
-          <option value="Register">Register</option>
-        </Select>
-      </FormControl>
+            style={{ marginRight: "15px", width: "150px" }}
+            color="primary"
+            size="small"
+            variant="outlined"
+          >
+            <InputLabel htmlFor="outlined-age-native-simple">
+              <FiFilter style={{ marginRight: "5px" }} />
+              Filters
+            </InputLabel>
+            <Select native defaultValue="all" label="filter-tool">
+              <option value="Male">Nam</option>
+              <option value="Female">Nữ</option>
+              <option value="Admin">Admin</option>
+              <option value="Manager">Manager</option>
+              <option value="Register">Register</option>
+            </Select>
+          </FormControl>
           {/* END FILTER */}
 
           {/* START SORT - chưa hoàn thành*/}
           <FormControl
-          style={{ marginRight: "15px", width: "150px" }}
-          color="primary"
-        size="small"
-        variant="outlined"
-      >
-        <InputLabel htmlFor="outlined-age-native-simple"><BsSortDownAlt style={{ marginRight:"5px"}}/>Sort</InputLabel>
-        <Select
-          native
-          defaultValue="all"
-          label="sort-tool"
-        >
-          <option value="ID">ID</option>
-          <option value="Ten">Họ Tên</option>
-          <option value="NgaySinh">Ngày Sinh</option>
-          <option value="NgayTao">Ngày Tạo</option>
-        </Select>
-      </FormControl>
+            style={{ marginRight: "15px", width: "150px" }}
+            color="primary"
+            size="small"
+            variant="outlined"
+          >
+            <InputLabel htmlFor="outlined-age-native-simple">
+              <BsSortDownAlt style={{ marginRight: "5px" }} />
+              Sort
+            </InputLabel>
+            <Select native defaultValue="all" label="sort-tool">
+              <option value="ID">ID</option>
+              <option value="Ten">Họ Tên</option>
+              <option value="NgaySinh">Ngày Sinh</option>
+              <option value="NgayTao">Ngày Tạo</option>
+            </Select>
+          </FormControl>
           {/* END SORT */}
 
           {/* START CREATE */}
@@ -352,11 +350,18 @@ export default function AdminUsers() {
                       size="medium"
                       color="primary"
                       style={{ outline: "none" }}
-                      onClick={()=>getUserSelected(item)}
+                      onClick={() => getUserSelected(item)}
                     >
                       <FiEdit3 fontSize="inherit" />
                     </IconButton>
-                    <ModalUpdateUser openUpdate={openUpdate} data={userSelected} handleCloseUpdate={handleCloseUpdate} styleModal={styleModal} handleSubmitUpdate={handleSubmitUpdate} styleTextField={styleTextField}/>
+                    <ModalUpdateUser
+                      openUpdate={openUpdate}
+                      data={userSelected}
+                      handleCloseUpdate={handleCloseUpdate}
+                      styleModal={styleModal}
+                      handleSubmitUpdate={handleSubmitUpdate}
+                      styleTextField={styleTextField}
+                    />
                   </TableCell>
                   <TableCell align="left">
                     <IconButton

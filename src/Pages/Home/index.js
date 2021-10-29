@@ -130,12 +130,24 @@ export default function Home() {
         </Paper>
       </Box>
       <Box style={{ position: "absolute", bottom: "-200px", left: "260px" }}>
-        <img width="750px" height="130px" src="/img/unnamed.png" alt="hinhAnh" />
-        <Typography style={{fontSize: "9px", color:"grey", textAlign:"center",paddingTop: "20px", marginBottom: "-25px"}}>
-             Developer by Tran Van hung, 2021
-            </Typography>
+        <img
+          width="750px"
+          height="130px"
+          src="/img/unnamed.png"
+          alt="hinhAnh"
+        />
+        <Typography
+          style={{
+            fontSize: "9px",
+            color: "grey",
+            textAlign: "center",
+            paddingTop: "20px",
+            marginBottom: "-25px",
+          }}
+        >
+          Developer by Tran Van hung, 2021
+        </Typography>
       </Box>
-      
     </Box>
   );
 }

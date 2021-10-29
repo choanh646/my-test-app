@@ -11,7 +11,7 @@ export default function ModalUpdateUser({
   styleModal,
   handleSubmitUpdate,
   styleTextField,
-    data
+  data,
 }) {
   const [Ten, setTen] = useState("");
   const [NgaySinh, setNgaySinh] = useState("");
@@ -54,7 +54,11 @@ export default function ModalUpdateUser({
   };
 
   return (
-    <Modal id="modal__update__user" open={openUpdate} onClose={handleCloseUpdate}>
+    <Modal
+      id="modal__update__user"
+      open={openUpdate}
+      onClose={handleCloseUpdate}
+    >
       <Box sx={styleModal}>
         <form
           className="form__update"
